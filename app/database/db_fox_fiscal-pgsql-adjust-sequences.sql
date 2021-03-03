@@ -1,0 +1,10 @@
+SELECT setval('tbl_cidades_id_seq', coalesce(max(id),0) + 1, false) FROM tbl_cidades;
+SELECT setval('tbl_empresa_id_seq', coalesce(max(id),0) + 1, false) FROM tbl_empresa;
+SELECT setval('tbl_lojas_id_seq', coalesce(max(id),0) + 1, false) FROM tbl_lojas;
+SELECT setval('tbl_pais_id_seq', coalesce(max(id),0) + 1, false) FROM tbl_pais;
+SELECT setval('tbl_prazos_id_seq', coalesce(max(id),0) + 1, false) FROM tbl_prazos;
+SELECT setval('tbl_responsaveis_id_seq', coalesce(max(id),0) + 1, false) FROM tbl_responsaveis;
+SELECT setval('tbl_senhasEstaduais_id_seq', coalesce(max(id),0) + 1, false) FROM tbl_senhasEstaduais;
+SELECT setval('tbl_senhasMunicipais_id_seq', coalesce(max(id),0) + 1, false) FROM tbl_senhasMunicipais;
+SELECT setval('tbl_status_id_seq', coalesce(max(id),0) + 1, false) FROM tbl_status;
+SELECT setval('tbl_uf_id_seq', coalesce(max(id),0) + 1, false) FROM tbl_uf;

@@ -1,0 +1,39 @@
+body,html{
+    height: 100%;
+    margin: 0;
+
+}
+.bg{
+    background-image: url("imagem.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    
+   
+}
+#videoBG{
+    
+    position: fixed; 
+	right: 0; 
+	bottom: 0;
+	min-width: 100%; 
+	min-height: 100%;
+	width: auto; 
+	height: auto; 
+	z-index: -1000;
+	background: url("fundo.png") no-repeat;
+    background-size: cover; 
+}
+
+@media (max-aspect-ratio: 16/9){
+    #videoBR{
+        width: auto;
+        height: 100%;
+    }
+}
+
+
+
+
+

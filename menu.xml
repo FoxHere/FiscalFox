@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu>
+  <menuitem label="Fechamento">
+    <icon>fas:edit fa-fw</icon>
+    <menu>
+      <menuitem label="Protocolo fechamento">
+        <action>cad_fechamento#method=onShow</action>
+        <icon>fas:align-justify fa-fw</icon>
+      </menuitem>
+      <menuitem label="ERP x Livros">
+        <action>Controle_ERPxLivros#method=onShow</action>
+        <icon>fas:book fa-fw</icon>
+      </menuitem>
+      <menuitem label="Legendas">
+        <action>cad_legendas#method=onShow</action>
+        <icon>fas:book fa-fw</icon>
+      </menuitem>
+      <menuitem label="Observações">
+        <action>cad_observacoes#method=onShow</action>
+        <icon>fas:book fa-fw</icon>
+      </menuitem>
+      <menuitem label="Referência">
+        <action>TblFechamentoDtrefFormList#method=onShow</action>
+        <icon>fas:calendar-alt fa-fw</icon>
+      </menuitem>
+    </menu>
+  </menuitem>
+  <menuitem label="Recebimento">
+    <icon>fas:money-check fa-fw</icon>
+    <menu>
+      <menuitem label="Protocolo financeiro">
+        <action>FormList_protFinanc#method=onShow</action>
+        <icon>fas:align-justify fa-fw</icon>
+      </menuitem>
+      <menuitem label="Cadastro - Prestador">
+        <action>FormList_prestador#method=onShow</action>
+        <icon>fas:folder-open fa-fw #6d61c6</icon>
+      </menuitem>
+      <menuitem label="Cadastro - Categoria">
+        <action>FormList_categoria#method=onShow</action>
+        <icon>fas:folder-open fa-fw #6d61c6</icon>
+      </menuitem>
+      <menuitem label="Cadastro - Departamento">
+        <action>FormList_departamento#method=onShow</action>
+        <icon>fas:folder-open fa-fw #6d61c6</icon>
+      </menuitem>
+    </menu>
+  </menuitem>
+  <menuitem label="Consultas">
+    <icon>fas:book-open fa-fw</icon>
+    <menu>
+      <menuitem label="Consulta Lojas">
+        <action>List_Lojas#method=onShow</action>
+        <icon>fas:archive fa-fw</icon>
+      </menuitem>
+      <menuitem label="Consulta Sefaz">
+        <action>List_Sefaz#method=onShow</action>
+        <icon>fas:file-alt fa-fw</icon>
+      </menuitem>
+      <menuitem label="Responsáveis">
+        <action>SimpleList_Resp#method=onShow</action>
+        <icon>fas:user fa-fw</icon>
+      </menuitem>
+      <menuitem label="Prazos e Obrigações">
+        <action>List_Prazo#method=onShow</action>
+        <icon>fas:money-bill fa-fw</icon>
+      </menuitem>
+      <menuitem label="Consulta de municípios - Brasil">
+        <action>List_Cidades#method=onShow</action>
+        <icon>fas:city fa-fw</icon>
+      </menuitem>
+      <menuitem label="Consulta de Senhas">
+        <icon>fas:key fa-fw #3a5f89</icon>
+        <menu>
+          <menuitem label="Estaduais">
+            <action>List_SenhaEst#method=onShow</action>
+            <icon>fas:key fa-fw</icon>
+          </menuitem>
+          <menuitem label="Municipais">
+            <action>List_SenhaMun#method=onShow</action>
+            <icon>fas:key fa-fw</icon>
+          </menuitem>
+        </menu>
+      </menuitem>
+    </menu>
+  </menuitem>
+  <menuitem label="Pagamentos">
+    <icon>fas:money-check fa-fw</icon>
+    <menu>
+      <menuitem label="Protocolo de pagamentos">
+        <action>TblPagamentoFormList#method=onShow</action>
+        <icon>fas:barcode fa-fw</icon>
+      </menuitem>
+    </menu>
+  </menuitem>
+  <menuitem label="Controle de cadastros">
+    <icon>fas:address-card fa-fw</icon>
+    <menu>
+      <menuitem label="Cadastro de Lojas">
+        <action>FormList_LojaCad1#method=onShow</action>
+        <icon>far:edit fa-fw</icon>
+      </menuitem>
+      <menuitem label="Editar Responsáveis">
+        <action>FormList_Resp#method=onShow</action>
+        <icon>fas:user-plus fa-fw</icon>
+      </menuitem>
+      <menuitem label="Cadastro de prazos e obrigações">
+        <action>FormList_Prazos#method=onShow</action>
+        <icon>fas:money-check-alt fa-fw</icon>
+      </menuitem>
+      <menuitem label="Cadastro de País">
+        <action>FormList_Pais#method=onShow</action>
+        <icon>fas:globe-americas fa-fw</icon>
+      </menuitem>
+      <menuitem label="Cadastro de Estados (UF)">
+        <action>FormList_UF#method=onShow</action>
+        <icon>fas:building fa-fw</icon>
+      </menuitem>
+      <menuitem label="Cadastro de Cidades">
+        <action>FormList_Cidades#method=onShow</action>
+        <icon>fas:city fa-fw</icon>
+      </menuitem>
+      <menuitem label="Cadastro de Senhas">
+        <icon>fas:key fa-fw #3a5f89</icon>
+        <menu>
+          <menuitem label="Estaduais">
+            <action>FormList_SenhaEst#method=onShow</action>
+            <icon>fas:key fa-fw</icon>
+          </menuitem>
+          <menuitem label="Municipais">
+            <action>FormList_SenhaMun#method=onShow</action>
+            <icon>fas:key fa-fw</icon>
+          </menuitem>
+        </menu>
+      </menuitem>
+    </menu>
+  </menuitem>
+  <menuitem label="_t{Administration}">
+    <icon>fas:home fa-fw</icon>
+    <menu>
+      <menuitem label="Dashboard">
+        <action>SystemAdministrationDashboard</action>
+        <icon>fas:tachometer-alt fa-fw</icon>
+      </menuitem>
+      <menuitem label="_t{Programs}">
+        <action>SystemProgramList</action>
+        <icon>far:file-code fa-fw</icon>
+      </menuitem>
+      <menuitem label="_t{Groups}">
+        <action>SystemGroupList</action>
+        <icon>fas:users fa-fw</icon>
+      </menuitem>
+      <menuitem label="_t{Units}">
+        <action>SystemUnitList</action>
+        <icon>fas:university fa-fw</icon>
+      </menuitem>
+      <menuitem label="_t{Users}">
+        <action>SystemUserList</action>
+        <icon>fas:user fa-fw</icon>
+      </menuitem>
+      <menuitem label="_t{Database explorer}">
+        <action>SystemDatabaseExplorer</action>
+        <icon>fas:database fa-fw</icon>
+      </menuitem>
+      <menuitem label="_t{SQL Panel}">
+        <action>SystemSQLPanel</action>
+        <icon>fas:table fa-fw</icon>
+      </menuitem>
+      <menuitem label="_t{Menu editor}">
+        <action>SystemMenuEditor</action>
+        <icon>far:edit fa-fw</icon>
+      </menuitem>
+      <menuitem label="PHP Info">
+        <action>SystemPHPInfoView</action>
+        <icon>fas:info-circle fa-fw</icon>
+      </menuitem>
+      <menuitem label="_t{Preferences}">
+        <action>SystemPreferenceForm#method=onEdit</action>
+        <icon>fas:cog fa-fw</icon>
+      </menuitem>
+    </menu>
+  </menuitem>
+  <menuitem label="_t{Documents}">
+    <icon>far:file-alt fa-fw</icon>
+    <menu>
+      <menuitem label="_t{Send document}">
+        <action>SystemDocumentUploadForm</action>
+        <icon>fas:cloud-upload-alt fa-fw</icon>
+      </menuitem>
+      <menuitem label="_t{My documents}">
+        <action>SystemDocumentList</action>
+        <icon>fas:archive fa-fw</icon>
+      </menuitem>
+      <menuitem label="_t{Shared with me}">
+        <action>SystemSharedDocumentList</action>
+        <icon>fas:share-alt fa-fw</icon>
+      </menuitem>
+      <menuitem label="_t{Categories}">
+        <action>SystemDocumentCategoryFormList</action>
+        <icon>fas:th fa-fw</icon>
+      </menuitem>
+    </menu>
+  </menuitem>
+  <menuitem label="Logs">
+    <icon>fas:desktop fa-fw</icon>
+    <menu>
+      <menuitem label="Dashboard">
+        <action>SystemLogDashboard</action>
+        <icon>fas:tachometer-alt fa-fw</icon>
+      </menuitem>
+      <menuitem label="_t{Access Log}">
+        <action>SystemAccessLogList</action>
+        <icon>fas:key fa-fw</icon>
+      </menuitem>
+      <menuitem label="_t{Change Log}">
+        <action>SystemChangeLogView</action>
+        <icon>fas:film fa-fw</icon>
+      </menuitem>
+      <menuitem label="_t{SQL Log}">
+        <action>SystemSqlLogList</action>
+        <icon>fas:database fa-fw</icon>
+      </menuitem>
+      <menuitem label="_t{Request Log}">
+        <action>SystemRequestLogList</action>
+        <icon>fas:globe fa-fw</icon>
+      </menuitem>
+      <menuitem label="_t{PHP Log}">
+        <action>SystemPHPErrorLogView</action>
+        <icon>fas:exclamation-triangle fa-fw</icon>
+      </menuitem>
+      <menuitem label="Session dump">
+        <action>SystemSessionDumpView</action>
+        <icon>fas:code fa-fw</icon>
+      </menuitem>
+    </menu>
+  </menuitem>
+  <menuitem label="Logout">
+    <action>LoginForm#method=onLogout#static=1</action>
+    <icon>fas:sign-out-alt fa-fw</icon>
+  </menuitem>
+</menu>
