@@ -35,8 +35,7 @@ class TblLojas extends TRecord
         parent::addAttribute('nire');
         parent::addAttribute('responsavel_id');
         parent::addAttribute('dataAbertura');
-        parent::addAttribute('dataEncerramento');
-            
+        parent::addAttribute('dataEncerramento');    
     }
 
     /**

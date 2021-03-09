@@ -12,7 +12,7 @@ class FormList_LojaCad1 extends TPage
     private static $primaryKey = 'id';
     private static $formName = 'formList_TblLojas';
     private $showMethods = ['onReload', 'onSearch'];
-
+    
     /**
      * Class constructor
      * Creates the page, the form and the listing
@@ -22,13 +22,14 @@ class FormList_LojaCad1 extends TPage
         parent::__construct();
         // creates the form
         $this->form = new BootstrapFormBuilder(self::$formName);
-
+        
         // define the form title
         $this->form->setFormTitle("Cadastro de Lojas");
+        
         $criteria_responsavel_id = new TCriteria();
-
-        $responsavelVar = 1; //tblgrupo::grupo_apuradores;
-        $criteria_responsavel_id->add(new TFilter('tbl_grupo_id', 'like', "%{$responsavelVar}%"));
+        
+        $responsavelVar = tblgrupo::grupo_apuradores;
+        $criteria_responsavel_id->add(new TFilter('tbl_grupo_id', '=', $responsavelVar));
 
         
         $status_id = new TDBCombo('status_id', 'db_fox_fiscal', 'TblStatus', 'id', '{status}','status asc'  );
@@ -37,37 +38,39 @@ class FormList_LojaCad1 extends TPage
         $responsavel_id = new TDBCombo('responsavel_id', 'db_fox_fiscal', 'TblResponsaveis', 'id', '{responsavel} - {tbl_grupo->grupo} ','responsavel asc' , $criteria_responsavel_id );
 
         $loja->setMask('{loja} - {uf->uf} ');
-        $loja->setMinLength(2);
+        $loja->setMinLength(1);
 
-        $loja->setSize('70%');
+        $loja->setSize('100%');
         $uf_id->setSize('100%');
         $status_id->setSize('100%');
-        $responsavel_id->setSize('98%');
+        $responsavel_id->setSize('100%');
 
-        $row1 = $this->form->addFields([new TLabel("Status:", null, '16px', 'B')],[$status_id],[new TLabel("Loja:", null, '16px', 'B')],[$loja],[new TLabel("UF:", null, '16px', 'B')],[$uf_id],[new TLabel("Responsável:", null, '16px', 'B')],[$responsavel_id]);
+        $row1 = $this->form->addFields([new TLabel("Status:", '#0069d9', '16px', 'B')],[$status_id],[new TLabel("Loja:", '#0069d9', '16px', 'B')],[$loja],[new TLabel("UF:", '#0069d9', '16px', 'B')],[$uf_id],[new TLabel("Responsável:", '#0069d9', '16px', 'B')],[$responsavel_id]);
         $row1->layout = [' col-sm-1 control-label',' col-sm-2',' col-sm-1 control-label','col-sm-2',' col-sm-1 control-label',' col-sm-1',' col-sm-1 control-label',' col-sm-3'];
 
         // keep the form filled during navigation with session data
         $this->form->setData( TSession::getValue(__CLASS__.'_filter_data') );
 
+        //------------------------------------Buttons----------------------------------------------------------------
         $btn_onsearch = $this->form->addAction("Buscar", new TAction([$this, 'onSearch']), 'fas:search #ffffff');
         $btn_onsearch->addStyleClass('btn-primary'); 
-
-        $btn_onexportcsv = $this->form->addAction("Exportar como CSV", new TAction([$this, 'onExportCsv']), 'far:file-alt #000000');
-
-        $btn_onshow = $this->form->addAction("Cadastrar", new TAction(['FormList_LojaCad2', 'onShow']), 'fas:plus #69aa46');
-
+        $btn_onshow = $this->form->addAction("Cadastrar", new TAction(['FormList_LojaCad2', 'onShow']), 'fas:plus #ffffff');
+        $btn_onshow->addStyleClass('btn-warning'); 
+        //$btn_onexportcsv = $this->form->addAction("Exportar como CSV", new TAction([$this, 'onExportCsv']), 'far:file-alt #000000');
+        //----------------------------------------------------------------------------------------------------------
+        
         // creates a Datagrid
         $this->datagrid = new TDataGrid;
         $this->datagrid->disableHtmlConversion();
+
         $this->datagrid = new BootstrapDatagridWrapper($this->datagrid);
         $this->filter_criteria = new TCriteria;
        
         
         $this->datagrid->disableDefaultClick();
         $this->datagrid->style = 'width: 100%';
-        $this->datagrid->datatable = 'true'; 
         $this->datagrid->setHeight(320);
+        $this->datagrid->datatable = 'true'; 
 
         $column_id = new TDataGridColumn('id', "Id", 'center');
         $column_empresa_empresa = new TDataGridColumn('empresa->empresa', "Empresa", 'left');
@@ -75,7 +78,7 @@ class FormList_LojaCad1 extends TPage
         $column_numCapta = new TDataGridColumn('numCapta', "NºCapta", 'center');
         $column_loja = new TDataGridColumn('loja', "Loja", 'left');
         $column_uf_uf = new TDataGridColumn('uf->uf', "UF", 'left');
-        $column_endereco = new TDataGridColumn('endereco', "Endereço", 'left');
+        $column_endereco = new TDataGridColumn('endereco', "Endereço", 'left','200px');
         $column_cidades_cidades = new TDataGridColumn('cidades->cidades', "Cidade", 'left');
         $column_cep = new TDataGridColumn('cep', "CEP", 'left');
         $column_shopping = new TDataGridColumn('shopping', "Shopping", 'left');
@@ -84,6 +87,8 @@ class FormList_LojaCad1 extends TPage
         $column_inscMunicipal = new TDataGridColumn('inscMunicipal', "I.M", 'left');
         $column_nire = new TDataGridColumn('nire', "NIRE", 'left');
         $column_responsavel_responsavel = new TDataGridColumn('responsavel->responsavel', "Responsável", 'left');
+        $column_dataAbertura = new TDataGridColumn('dataAbertura', "Data Abertura", 'Center');
+        $column_dataEncerramento = new TDataGridColumn('dataEncerramento', "Data Encerramento", 'Center');
 
         $order_id = new TAction(array($this, 'onReload'));
         $order_id->setParameter('order', 'id');
@@ -104,13 +109,12 @@ class FormList_LojaCad1 extends TPage
         $this->datagrid->addColumn($column_shopping);
         $this->datagrid->addColumn($column_cep);
         $this->datagrid->addColumn($column_cidades_cidades);
+        $this->datagrid->addColumn($column_dataAbertura);
+        $this->datagrid->addColumn($column_dataEncerramento);
         $this->datagrid->addColumn($column_endereco);
 
-
-
-
-
-
+        $column_dataAbertura->setTransformer(array($this, 'formatDate1'));
+        $column_dataEncerramento->setTransformer(array($this, 'formatDate2'));
 
         $action_group = new TDataGridActionGroup("", 'fas:cog');
         $action_group->addHeader('');
@@ -143,24 +147,44 @@ class FormList_LojaCad1 extends TPage
         $this->pageNavigation->enableCounters();
         $this->pageNavigation->setAction(new TAction(array($this, 'onReload')));
         $this->pageNavigation->setWidth($this->datagrid->getWidth());
-
+        
         $this->datagrid->disableDefaultClick();
 
-        $panel = new TPanelGroup;
-        $panel->add($this->datagrid);
-        $panel->getBody()->class .= ' table-responsive';
 
-        $panel->addFooter($this->pageNavigation);//
+
+        $panel1 = new TPanelGroup;
+        $panel1->add($this->datagrid);
+
+        $panel2 = new TPanelGroup;
+        $panel2->addFooter($this->pageNavigation);//
+
+        $scroll = new TScroll;
+        $scroll->setSize('100%',400);
+        $scroll->add($panel1);
 
         // vertical box container
         $container = new TVBox;
         $container->style = 'width: 100%';
         $container->add(TBreadCrumb::create(["Controle de cadastros","Cadastro de Lojas"]));
         $container->add($this->form);
-        $container->add($panel);
+        $container->add($scroll);
+        $container->add($panel2);
 
         parent::add($container);
 
+    }
+
+    public function formatDate1($column_dataAbertura, $object)
+    {
+        $date = new DateTime($object->dataAbertura);
+        return $date->format('d/m/Y');
+    }
+    public function formatDate2($column_dataEncerramento, $object)
+    {
+        if (!empty($object->dataEncerramento)){
+        $date = new DateTime($object->dataEncerramento);
+            return $date->format('d/m/Y');
+        }   
     }
 
     public function onExportCsv($param = null) 
@@ -329,7 +353,7 @@ class FormList_LojaCad1 extends TPage
 
             // creates a repository for TblLojas
             $repository = new TRepository(self::$activeRecord);
-            $limit = 15;
+            $limit = 20;
 
             $criteria = clone $this->filter_criteria;
 

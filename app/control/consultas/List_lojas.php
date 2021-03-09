@@ -28,8 +28,8 @@ class List_Lojas extends TPage
         // define the form title
         $this->form->setFormTitle("Consulta Lojas");
         $criteria_responsavel_id = new TCriteria();
-        $responsavelVar = 1; //tblgrupo::grupo_apuradores;
-        $criteria_responsavel_id->add(new TFilter('tbl_grupo_id', 'like', "%{$responsavelVar}%"));
+        $responsavelVar = tblgrupo::grupo_apuradores;
+        $criteria_responsavel_id->add(new TFilter('tbl_grupo_id', '=', $responsavelVar));
 
 
 
@@ -66,7 +66,7 @@ class List_Lojas extends TPage
         $inscMunicipal->setSize('100%');
         $responsavel_id->setSize('100%');
 
-        $row1 = $this->form->addContent([new TFormSeparator("Escolha um dos filtros abaixo", '#007bff', '18', '#eeeeee')]);
+        $row1 = $this->form->addContent([new TFormSeparator("<b>Escolha um dos filtros abaixo</b>", '#007bff', '18', '#eeeeee')]);
         $row2 = $this->form->addFields([new TLabel("Status", '#007bff', '14px', 'B'), $status_id],[new TLabel("Loja", '#007bff', '14px', 'B'),$loja],[new TLabel("UF", '#007bff', '16px', 'B'),$uf_id],[new TLabel("CNPJ", '#007bff', '14px', 'B'),$cnpj],[new TLabel("Insc.Estadual", '#007bff', '14px', 'B'),$inscEstadual],[new TLabel("Insc.Municípal:", '#007bff', '14px', 'B'),$inscMunicipal],[new TLabel("Cidade Brasileira", '#007bff', '14px', 'B'),$cidades_id],[new TLabel("Responsável", '#007bff', '14px', 'B'),$responsavel_id]);
         $row2->layout = [' col-sm-1',' col-sm-1',' col-sm-1','col-sm-2',' col-sm-2 ',' col-sm-1 ',' col-sm-3 ',' col-sm-1 '];
 
@@ -104,11 +104,12 @@ class List_Lojas extends TPage
         // creates a Datagrid
         $this->datagrid = new TDataGrid;
         $this->datagrid->disableHtmlConversion();
-        $this->datagrid = new BootstrapDatagridWrapper(new TDataGrid);
+        $this->datagrid = new BootstrapDatagridWrapper($this->datagrid);
         $this->filter_criteria = new TCriteria;
-        $this->datagrid->style = 'width: 100%';
+        $this->datagrid->style = 'min-width: 1900px;max-width: 1900px';
         $this->datagrid->datatable = 'true';
-        $this->datagrid->enablePopover("Endereço - shopping", '{endereco} - {shopping}');
+  
+        //$this->datagrid->enablePopover("Endereço - shopping", '{endereco} - {shopping}');
         
         
         
@@ -126,27 +127,27 @@ class List_Lojas extends TPage
         
         
 
-        $column_id = new  TDataGridColumn('id',"Id",'left');
-        $column_empresa_empresa = new TDataGridColumn('empresa->empresa', "Empresa", 'left');
-        $column_status_status = new TDataGridColumn('status->status',   "Status", 'left');
+        $column_id = new  TDataGridColumn('id',"Id",'center');
+        $column_empresa_empresa = new TDataGridColumn('empresa->empresa', "Empresa", 'center');
+        $column_status_status = new TDataGridColumn('status->status',   "Status", 'center');
         $column_numCapta = new TDataGridColumn('numCapta', "Nº", 'left');
         $column_loja = new TDataGridColumn('loja', "Loja", 'left');
         $column_uf_uf = new TDataGridColumn('uf->uf', "UF", 'left');
-        $column_endereco = new TDataGridColumn('{endereco} - {shopping} - {cep}', "Endereço", 'left');
+        $column_endereco = new TDataGridColumn('{endereco} - {shopping} - {cep}', "Endereço", 'center');
         $column_cidades_cidades = new TDataGridColumn('cidades->cidades', "Cidade", 'left');
         $column_cep = new TDataGridColumn('cep', "CEP", 'left');
-        //$column_shopping = new TDataGridColumn('shopping', "Shopping", 'left');
+        $column_shopping = new TDataGridColumn('shopping', "Shopping", 'center');
         $column_cnpj = new TDataGridColumn('cnpj', "CNPJ", 'left');
-        $column_inscEstadual = new TDataGridColumn('inscEstadual', "I.E", 'left');
-        $column_inscMunicipal = new TDataGridColumn('inscMunicipal', "I.M", 'left');
+        $column_inscEstadual = new TDataGridColumn('inscEstadual', "I.E", 'center');
+        $column_inscMunicipal = new TDataGridColumn('inscMunicipal', "I.M", 'center');
         $column_nire = new TDataGridColumn('nire', "NIRE", 'left');
         $column_responsavel_responsavel = new TDataGridColumn('responsavel->responsavel', "Responsável", 'left');
-        $column_dataAbertura = new TDataGridColumn('dataAbertura', "Data Abertura", 'Center');
-        $column_dataEncerramento = new TDataGridColumn('dataEncerramento', "Data Encerramento", 'Center');
+        $column_dataAbertura = new TDataGridColumn('dataAbertura', "Data Abertura", 'left');
+        $column_dataEncerramento = new TDataGridColumn('dataEncerramento', "Data Encerramento", 'left');
 
         $column_id->setAction(new TAction([$this, 'onReload']), ['order' => 'id']);
-        $column_empresa_empresa->setAction(new TAction([$this, 'onReload']), ['order' => 'empresa']);
-        $column_status_status->setAction(new TAction([$this, 'onReload']), ['order' => 'status']);
+        //$column_empresa_empresa->setAction(new TAction([$this, 'onReload']), ['order' => 'empresa']);
+        //$column_status_status->setAction(new TAction([$this, 'onReload']), ['order' => 'status']);
         $column_numCapta->setAction(new TAction([$this, 'onReload']), ['order' => 'numCapta']);
         $column_loja->setAction(new TAction([$this, 'onReload']), ['order' => 'loja']);
        // $column_uf_uf->setAction(new TAction([$this, 'onReload']), ['order' => 'uf->uf']);
@@ -157,7 +158,7 @@ class List_Lojas extends TPage
         $column_inscEstadual->setAction(new TAction([$this, 'onReload']), ['order' => 'inscEstadual']);
         $column_inscMunicipal->setAction(new TAction([$this, 'onReload']), ['order' => 'inscMunicipal']);
         $column_nire->setAction(new TAction([$this, 'onReload']), ['order' => 'nire']);
-        $column_responsavel_responsavel->setAction(new TAction([$this, 'onReload']), ['order' => 'responsavel']);
+        //$column_responsavel_responsavel->setAction(new TAction([$this, 'onReload']), ['order' => 'responsavel']);
         //$column_endereco->setAction(new TAction([$this, 'onReload']), ['order' => 'endereco']);
         $column_dataAbertura->setAction(new TAction([$this, 'onReload']), ['order' => 'dataAbertura']);
         $column_dataEncerramento->setAction(new TAction([$this, 'onReload']), ['order' => 'dataEncerramento']);
@@ -188,27 +189,27 @@ class List_Lojas extends TPage
 
 
         $this->datagrid->addColumn($column_id);
-        //$this->datagrid->addColumn($column_empresa_empresa);
+        
         $this->datagrid->addColumn($column_status_status);
         $this->datagrid->addColumn($column_numCapta);
         $this->datagrid->addColumn($column_loja);
         $this->datagrid->addColumn($column_uf_uf);
-        
-        
-        
         $this->datagrid->addColumn($column_cidades_cidades);
         
-        //$this->datagrid->addColumn($column_shopping);
+        
         $this->datagrid->addColumn($column_cnpj);
         $this->datagrid->addColumn($column_inscEstadual);
         $this->datagrid->addColumn($column_inscMunicipal);
-        //$this->datagrid->addColumn($column_nire);
+        $this->datagrid->addColumn($column_nire);
         $this->datagrid->addColumn($column_responsavel_responsavel);
-        //$this->datagrid->addColumn($column_endereco);
+        
         $this->datagrid->addColumn($column_cep);
         $this->datagrid->addColumn($column_dataAbertura);
         $this->datagrid->addColumn($column_dataEncerramento);
 
+        $this->datagrid->addColumn($column_empresa_empresa);
+        $this->datagrid->addColumn($column_endereco);
+        $this->datagrid->addColumn($column_shopping);
         // create the datagrid model
         $this->datagrid->createModel();
 
@@ -222,15 +223,18 @@ class List_Lojas extends TPage
 
         $panel1 = new TPanelGroup;
         $panel2 = new TPanelGroup;
-        $panel1->add($this->datagrid);
-
+        
+        
         //$panel->getbody()->class .=' table-responsive';
         $panel2->addFooter($this->pageNavigation);
         
         $scroll = new TScroll;
         $scroll->setSize('100%',400);
-        $tableScroll = $scroll->add($panel1);
         
+        $scroll->add($this->datagrid);
+        $panel1->add($scroll);
+        $panel1->getBody()->style = "overflow-x:auto;";
+                
         // vertical box container
         $container = new TVBox;
         $container->style = 'width: 100%';

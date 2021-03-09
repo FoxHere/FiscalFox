@@ -36,7 +36,7 @@ class TblDescrimpFormList extends TPage
         $id->setSize(80);
         $descricao->setSize('100%');
 
-        $row1 = $this->form->addFields([new TLabel("Id:", null, '14px', null)],[$id],[new TLabel("Descricao:", '#000000', '14px', 'B')],[$descricao]);
+        $row1 = $this->form->addFields([new TLabel("Id:", null, '14px', 'B')],[$id],[new TLabel("Descricao:", '#000000', '14px', 'B')],[$descricao]);
         $row1->layout = [' col-sm-1',' col-sm-1',' col-sm-3 control-label',' col-sm-5'];
 
         // keep the form filled during navigation with session data

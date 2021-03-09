@@ -325,7 +325,7 @@ input.form-control.tfield[widget="tfile"], input.form-control.tfield[widget="tmu
 table.tdatagrid_table
 {
     box-shadow: none;
-    border-radius: 0;
+    border-radius: 2;
 }
 
 .tdatagrid_head tr td

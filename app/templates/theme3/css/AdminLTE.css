@@ -2268,13 +2268,18 @@ a:focus {
   background-color: #d73925;
 }
 .btn-warning {
-  background-color: #f39c12;
-  border-color: #e08e0b;
+  background-color: #ffa67d;
+  border-color: #ffa67d;
+  color: #ffffff;
 }
-.btn-warning:hover,
-.btn-warning:active,
-.btn-warning.hover {
-  background-color: #e08e0b;
+.btn-warning:hover{
+  background-color: #fc9668;
+}
+.btn-warning:active{
+  background-color: #fc9668;
+}
+.btn-warning:focus{
+  background-color: #fc9668;
 }
 .btn-outline {
   border: 1px solid #fff;
@@ -2365,7 +2370,7 @@ a:focus {
   border-color: #c23321;
 }
 .callout.callout-warning {
-  border-color: #c87f0a;
+  border-color: #ffa67d;
 }
 .callout.callout-info {
   border-color: #0097bc;
@@ -2407,7 +2412,7 @@ a:focus {
   border-color: #d73925;
 }
 .alert-warning {
-  border-color: #e08e0b;
+  border-color: #ffa67d;
 }
 .alert-info {
   border-color: #00acd6;

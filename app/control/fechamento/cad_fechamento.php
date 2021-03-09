@@ -26,8 +26,7 @@ class cad_fechamento extends TPage
 
 
         $id = new TEntry('id');
-        
-        
+
         //$tbl_lojas_id = new TDBCombo('tbl_lojas_id', 'db_fox_fiscal', 'Tbllojas', 'id', 'loja','loja asc'  );
         //$tbl_lojas_id = new TDBUniqueSearch('tbl_lojas_id', 'db_fox_fiscal', 'Tblfechamento', 'id', '{tbl_lojas_id}','id asc'  );
         //--------------------------------Data de referência----------------------
@@ -50,7 +49,7 @@ class cad_fechamento extends TPage
         $ERPxLivros = new TDBCombo('tbl_fechamento_ERPxLivros_id', 'db_fox_fiscal', 'TblFechamentoErpxlivros', 'id', '{erpxlivros}','id asc'  );
         $legenda->setChangeAction( new TAction( array($this, 'statusChange')));
         $observacao->setChangeAction( new TAction( array($this, 'statusChange')));
-        
+
         $id->setSize(100);
         $status->setSize('100%');
         $lojas->setSize('100%');

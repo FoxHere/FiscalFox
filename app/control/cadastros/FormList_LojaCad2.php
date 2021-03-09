@@ -20,7 +20,7 @@ class FormList_LojaCad2 extends TPage
         // creates the form
         $this->form = new BootstrapFormBuilder(self::$formName);
         // define the form title
-        $this->form->setFormTitle("Edição da loja");
+        $this->form->setFormTitle("<b>Edição da loja</b>");
 
         $criteria_responsavel_id = new TCriteria();
 
@@ -42,34 +42,38 @@ class FormList_LojaCad2 extends TPage
         $inscMunicipal = new TEntry('inscMunicipal');
         $nire = new TEntry('nire');
         $responsavel_id = new TDBCombo('responsavel_id', 'db_fox_fiscal', 'TblResponsaveis', 'id', '{responsavel} - {tbl_grupo->grupo}','responsavel asc' , $criteria_responsavel_id );
+        $dataAbertura = new TDate('dataAbertura');
+        $dataEncerramento = new TDate('dataEncerramento');
 
-        $empresa_id->addValidation("Empresa", new TRequiredValidator()); 
-        $status_id->addValidation("Status", new TRequiredValidator()); 
-        $numCapta->addValidation("Nº", new TRequiredValidator()); 
-        $uf_id->addValidation("UF", new TRequiredValidator()); 
-        $cidades_id->addValidation("Cidade", new TRequiredValidator()); 
-        $cnpj->addValidation("CNPJ", new TRequiredValidator()); 
-        $responsavel_id->addValidation("Responsável", new TRequiredValidator()); 
+        $empresa_id->addValidation("de <b>Empresa</b>", new TRequiredValidator()); 
+        $status_id->addValidation("de <b>Status</b>", new TRequiredValidator()); 
+        $numCapta->addValidation("de <b>Nº</b>", new TRequiredValidator()); 
+        $uf_id->addValidation("de <b>UF</b>", new TRequiredValidator()); 
+        $cidades_id->addValidation("de <b>Cidade</b>", new TRequiredValidator()); 
+        $cnpj->addValidation("de <b>CNPJ</b>", new TRequiredValidator()); 
+        $responsavel_id->addValidation("de <b>Responsável</b>", new TRequiredValidator()); 
 
         
         $id->setEditable(false);
 
         $nire->placeholder = "Sem pontuação";
-
         $numCapta->setMask('0000');
         $cep->setMask('00000-000');
-        $cnpj->setMask('00000000000000');
+        $dataAbertura->setDatabaseMask('yyyy-mm-dd');
+        $dataEncerramento->setDatabaseMask('yyyy-mm-dd');
         $cidades_id->setMask('{cidades} - {uf->uf}');
-        $cidades_id->setMinLength(2);
+        $cidades_id->setMinLength(1);
+
+        $dataAbertura->setMask('dd/mm/yyyy');
+        $dataEncerramento->setMask('dd/mm/yyyy');
         
-       
-
+        $inscEstadual->setTip("Sem pontuação");
         $inscMunicipal->setTip("Sem pontuação");
-        $cep->setTip("Não precisa de pontuação");
-        $cnpj->setTip("não precisa de pontuação");
+        $cep->setTip("Sem pontuação");
+        $cnpj->setTip("Sem pontuação");
         $numCapta->setTip("Numero encontrado na tabela de cadastro do capta");
-
-        $loja->setMaxLength(4);
+        /*
+        $loja->setMaxLength(10);
         $cep->setMaxLength(20);
         $cnpj->setMaxLength(30);
         $nire->setMaxLength(150);
@@ -77,40 +81,52 @@ class FormList_LojaCad2 extends TPage
         $shopping->setMaxLength(30);
         $inscEstadual->setMaxLength(30);
         $inscMunicipal->setMaxLength(30);
-
-        $id->setSize(30);
-        $cep->setSize('98%');
-        $nire->setSize('99%');
+        */
+        $id->setSize('100%');
+        $cep->setSize('100%');
+        $nire->setSize('100%');
         $loja->setSize('100%');
-        $uf_id->setSize('94%');
+        $uf_id->setSize('100%');
         $cnpj->setSize('100%');
-        $numCapta->setSize('98%');
-        $shopping->setSize('98%');
-        $status_id->setSize('99%');
+        $numCapta->setSize('100%');
+        $shopping->setSize('100%');
+        $status_id->setSize('100%');
         $endereco->setSize('100%');
-        $empresa_id->setSize('99%');
-        $cidades_id->setSize('97%');
+        $empresa_id->setSize('100%');
+        $cidades_id->setSize('100%');
         $inscEstadual->setSize('100%');
         $inscMunicipal->setSize('100%');
         $responsavel_id->setSize('100%');
-
-        $row1 = $this->form->addContent([new TFormSeparator("Dados Principais", '#333333', '18', '#eeeeee')]);
-        $row2 = $this->form->addFields([new TLabel("Id:", null, '12px', null)],[$id],[new TLabel("Loja:", '#ff0000', '12px', null)],[$loja],[new TLabel("Status:", '#ff0000', '12px', null)],[$status_id],[new TLabel("Empresa:", '#ff0000', '12px', null)],[$empresa_id],[new TLabel("Nº do Capta:", '#ff0000', '12px', null)],[$numCapta]);
+        //Dados pricipais-------------------------------------------------------------------------------------
+        $row1 = $this->form->addContent([new TFormSeparator("<b>Dados Principais</b>", '#fc9668', '18px', '#000000')]);
+        
+        $row2 = $this->form->addFields([new TLabel("Id:", null, '14px', 'B')],[$id],[new TLabel("Loja:", null, '14px', 'B')],[$loja],[new TLabel("Status:", null, '14px', 'B')],[$status_id],[new TLabel("Empresa:", null, '14px', 'B')],[$empresa_id],[new TLabel("Nº do Capta:", null, '14px', 'B')],[$numCapta]);
         $row2->layout = [' col-sm-1 control-label',' col-sm-1',' col-sm-1 control-label',' col-sm-1',' col-sm-1 control-label',' col-sm-2',' col-sm-1 control-label',' col-sm-1',' col-sm-1','col-sm-2'];
+        
+        $row3 = $this->form->addFields([new TLabel("Responsável:", null, '14px', 'B')],[$responsavel_id]);
+        $row3->layout = [' col-sm-1 control-label',' col-sm-11'];
+        //----------------------------------------------------------------------------------------------------          
+        //Localização-----------------------------------------------------------------------------------------
+        $row4 = $this->form->addContent([new TFormSeparator("<b>Localização</b>", '#fc9668', '14px', '#000000')]);
 
-        $row3 = $this->form->addFields([new TLabel("Responsável:", '#ff0000', '12px', null)],[$responsavel_id]);
-        $row3->layout = [' col-sm-1',' col-sm-11'];
+        $row5 = $this->form->addFields([new TLabel("Endereço:", null, '14px', 'B')],[$endereco]);
+        $row5->layout = [' col-sm-1 control-label',' col-sm-11'];
 
-        $row4 = $this->form->addContent([new TFormSeparator("Localização", '#333333', '18', '#eeeeee')]);
-        $row5 = $this->form->addFields([new TLabel("Endereço", '#ff0000', '12px', null)],[$endereco]);
-        $row5->layout = [' col-sm-1',' col-sm-11'];
+        $row6 = $this->form->addFields([new TLabel("Cidade:", null, '14px', 'B')],[$cidades_id],[new TLabel("UF:", null, '14px', 'B')],[$uf_id],[new TLabel("CEP:", null, '14px', 'B')],[$cep],[new TLabel("Shopping:", null, '14px', 'B')],[$shopping]);
+        $row6->layout = [' col-sm-1 control-label',' col-sm-3',' col-sm-1 control-label',' col-sm-1',' col-sm-1 control-label','col-sm-2',' col-sm-1 control-label','col-sm-2'];
+        //----------------------------------------------------------------------------------------------------  
+        //Documentos legais-----------------------------------------------------------------------------------
+        $row7 = $this->form->addContent([new TFormSeparator("<b>Documentação legal</b>", '#fc9668', '14px', '#000000')]);
 
-        $row6 = $this->form->addFields([new TLabel("Cidade:", '#ff0000', '12px', null)],[$cidades_id],[new TLabel("UF:", '#ff0000', '12px', null)],[$uf_id],[new TLabel("CEP:", '#ff0000', '12px', null)],[$cep],[new TLabel("Shopping:", '#ff0000', '12px', null)],[$shopping]);
-        $row6->layout = [' col-sm-1',' col-sm-3',' col-sm-1',' col-sm-1',' col-sm-1','col-sm-2',' col-sm-1','col-sm-2'];
-
-        $row7 = $this->form->addContent([new TFormSeparator("Documentos legais", '#333333', '18', '#eeeeee')]);
-        $row8 = $this->form->addFields([new TLabel("CNPJ:", '#ff0000', '12px', null)],[$cnpj],[new TLabel("I.E:", '#ff0000', '12px', null)],[$inscEstadual],[new TLabel("I.M:", null, '12px', null)],[$inscMunicipal],[new TLabel("NIRE:", null, '12px', null)],[$nire]);
+        $row8 = $this->form->addFields([new TLabel("CNPJ:", null, '14px', 'B')],[$cnpj],[new TLabel("I.E:", null, '14px', 'B')],[$inscEstadual],[new TLabel("I.M:", null, '14px', 'B')],[$inscMunicipal],[new TLabel("NIRE:", null, '14px', 'B')],[$nire]);
         $row8->layout = [' col-sm-1 control-label',' col-sm-2',' col-sm-1 control-label','col-sm-2',' col-sm-1 control-label','col-sm-2',' col-sm-1 control-label','col-sm-2'];
+        //----------------------------------------------------------------------------------------------------  
+        //Datas-----------------------------------------------------------------------------------------------
+        $row9 = $this->form->addFields([new TLabel("Data Abertura:", null, '14px', 'B')],[$dataAbertura],[new TLabel("Data Encerramento:", null, '14px', 'B')],[$dataEncerramento]);
+        $row9->layout = [' col-sm-1 control-label',' col-sm-2',' col-sm-1 control-label',' col-sm-2'];
+        
+
+
 
         // create the form actions
         $btn_onsave = $this->form->addAction("Salvar", new TAction([$this, 'onSave']), 'fas:save #ffffff');
@@ -122,7 +138,7 @@ class FormList_LojaCad2 extends TPage
 
         $btnClose = new TButton('closeCurtain');
         $btnClose->class = 'btn btn-sm btn-default';
-        $btnClose->style = 'margin-right:15px;';
+        $btnClose->style = 'margin-right:18px;';
         $btnClose->onClick = "Template.closeRightPanel();";
         $btnClose->setLabel("Fechar");
         $btnClose->setImage('fas:times');
