@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <menu>
   <menuitem label="Fechamento">
-    <icon>fas:edit fa-fw</icon>
+    <icon>fas:edit fa-fw #fc9668</icon>
     <menu>
       <menuitem label="Protocolo fechamento">
         <action>cad_fechamento#method=onShow</action>
@@ -26,7 +26,7 @@
     </menu>
   </menuitem>
   <menuitem label="Recebimento">
-    <icon>fas:money-check fa-fw</icon>
+    <icon>fas:money-check fa-fw #fc9668</icon>
     <menu>
       <menuitem label="Protocolo financeiro">
         <action>FormList_protFinanc#method=onShow</action>
@@ -47,7 +47,7 @@
     </menu>
   </menuitem>
   <menuitem label="Consultas">
-    <icon>fas:book-open fa-fw</icon>
+    <icon>fas:book-open fa-fw #fc9668</icon>
     <menu>
       <menuitem label="Consulta Lojas">
         <action>List_Lojas#method=onShow</action>
@@ -85,7 +85,7 @@
     </menu>
   </menuitem>
   <menuitem label="Pagamentos">
-    <icon>fas:money-check fa-fw</icon>
+    <icon>fas:money-check fa-fw #fc9668</icon>
     <menu>
       <menuitem label="Protocolo de pagamentos">
         <action>TblPagamentoFormList#method=onShow</action>
@@ -94,7 +94,7 @@
     </menu>
   </menuitem>
   <menuitem label="Controle de cadastros">
-    <icon>fas:address-card fa-fw</icon>
+    <icon>fas:address-card fa-fw #fc9668</icon>
     <menu>
       <menuitem label="Cadastro de Lojas">
         <action>FormList_LojaCad1#method=onShow</action>
@@ -136,7 +136,7 @@
     </menu>
   </menuitem>
   <menuitem label="_t{Administration}">
-    <icon>fas:home fa-fw</icon>
+    <icon>fas:home fa-fw #fc9668</icon>
     <menu>
       <menuitem label="Dashboard">
         <action>SystemAdministrationDashboard</action>
@@ -181,7 +181,7 @@
     </menu>
   </menuitem>
   <menuitem label="_t{Documents}">
-    <icon>far:file-alt fa-fw</icon>
+    <icon>far:file-alt fa-fw #fc9668</icon>
     <menu>
       <menuitem label="_t{Send document}">
         <action>SystemDocumentUploadForm</action>
@@ -202,7 +202,7 @@
     </menu>
   </menuitem>
   <menuitem label="Logs">
-    <icon>fas:desktop fa-fw</icon>
+    <icon>fas:desktop fa-fw #fc9668</icon>
     <menu>
       <menuitem label="Dashboard">
         <action>SystemLogDashboard</action>
@@ -236,6 +236,6 @@
   </menuitem>
   <menuitem label="Logout">
     <action>LoginForm#method=onLogout#static=1</action>
-    <icon>fas:sign-out-alt fa-fw</icon>
+    <icon>fas:sign-out-alt fa-fw #fa1010</icon>
   </menuitem>
 </menu>
