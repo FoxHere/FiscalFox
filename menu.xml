@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <menu>
+  <menuitem label="Vivara">
+    <icon>far:building fa-fw #fc9668</icon>
+    <menu>
+      <menuitem label="Intranet">
+        <action>vivara_intranet#method=onShow</action>
+        <icon>fas:globe-americas fa-fw #1f94d6</icon>
+      </menuitem>
+    </menu>
+  </menuitem>
   <menuitem label="Fechamento">
     <icon>fas:edit fa-fw #fc9668</icon>
     <menu>
